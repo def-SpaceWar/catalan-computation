@@ -217,7 +217,7 @@ static std::vector<mpz_t*> build_components_from_factorization(
     return components;
 }
 
-static std::vector<ulong> catalan_construct_kbit(ulong n, size_t k_bits) {
+std::vector<ulong> catalan_construct_kbit(ulong n, size_t k_bits) {
     auto factors = catalan_prime_factorization(n);
 
     ulong free_ram = get_free_ram_bytes();

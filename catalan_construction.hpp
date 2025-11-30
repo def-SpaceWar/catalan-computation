@@ -7,7 +7,7 @@
 #include <vector>
 
 typedef uint64_t ulong;
-std::vector<ulong> catalan_construct_kbit(ulong n);
+std::vector<ulong> catalan_construct_kbit(ulong n, size_t k_bits);
 std::array<ulong, 4> catalan_construct_256(ulong n);
 std::array<ulong, 8> catalan_construct_512(ulong n);
 std::array<ulong, 16> catalan_construct_1024(ulong n);

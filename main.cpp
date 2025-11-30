@@ -76,6 +76,7 @@ ulong catalan_direct(ulong n) {
 }
 
 int main() {
+    /*
     // sieve test
     std::cout << "Hello First 20 million primes: ";
     auto primes = segmented_wheel_sieve(10'000'000);
@@ -106,12 +107,13 @@ int main() {
         }
     }
     std::cout << std::endl;
+    */
 
     // construction test
-    ulong n  = 100;
-    auto out = catalan_construct_2048(n);
-    std::vector<ulong> v(std::begin(out), std::end(out));
-    std::cout << "C(" << n << ") = " << limbs_to_decimal(v) << std::endl;
+    ulong n = 10'000;
+    std::cout << "C(" << n
+              << ") = " << limbs_to_decimal(catalan_construct_kbit(n, 32'768))
+              << std::endl;
 
     return 0;
 }
