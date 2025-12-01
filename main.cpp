@@ -110,9 +110,9 @@ int main() {
     */
 
     // construction test
-    ulong n = 10'000;
-    std::cout << "C(" << n
-              << ") = " << limbs_to_decimal(catalan_construct_kbit(n, 32'768))
+    ulong n = 2'000'000'000;
+    std::cout << "C(" << n << ") = "
+              << limbs_to_decimal(catalan_construct_kbit(n, 1'073'741'824))
               << std::endl;
 
     return 0;

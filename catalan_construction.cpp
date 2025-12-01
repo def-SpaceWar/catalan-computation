@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <array>
+#include <boost/multiprecision/cpp_int.hpp>
 #include <cassert>
 #include <cmath>
 #include <cstdint>
@@ -294,33 +295,14 @@ std::array<ulong, 32> catalan_construct_2048(ulong n) {
 }
 
 std::string limbs_to_decimal(const std::vector<ulong> &limbs) {
-    std::vector<unsigned __int128> a(limbs.size());
-    for (size_t i = 0; i < limbs.size(); ++i)
-        a[i] = (unsigned __int128)limbs[i];
+    if (limbs.empty()) return "0";
 
-    if (std::all_of(a.begin(), a.end(), [](unsigned __int128 v) {
-            return v == 0;
-        }))
-        return "0";
+    boost::multiprecision::cpp_int x = 0;
 
-    std::string out;
-    out.reserve(80);
-    while (true) {
-        unsigned __int128 carry = 0;
-        for (int i = (int)a.size() - 1; i >= 0; --i) {
-            unsigned __int128 cur = (carry << 64) | a[i];
-            a[i]                  = cur / 10;
-            carry                 = cur % 10;
-        }
-        out.push_back(char('0' + (unsigned)carry));
-        bool all_zero = true;
-        for (auto &v : a)
-            if (v != 0) {
-                all_zero = false;
-                break;
-            }
-        if (all_zero) break;
+    for (int i = (int)limbs.size() - 1; i >= 0; --i) {
+        x <<= 64;
+        x += boost::multiprecision::cpp_int(limbs[i]);
     }
-    std::reverse(out.begin(), out.end());
-    return out;
+
+    return x.convert_to<std::string>();
 }

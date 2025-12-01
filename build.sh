@@ -2,7 +2,7 @@
 
 g++ ./*.cpp \
 	-Wall \
-	-O3 \
+	-Ofast \
 	-march=native \
 	-mavx2 \
 	-lgmp \
