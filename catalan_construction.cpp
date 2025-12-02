@@ -2,7 +2,6 @@
 #include "catalan.hpp"
 
 #include <algorithm>
-#include <array>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <cassert>
 #include <cmath>
@@ -259,38 +258,6 @@ std::vector<ulong> catalan_construct_kbit(ulong n, size_t k_bits) {
 
     mpz_clear(r);
     mpz_free(final_prod);
-    return out;
-}
-
-std::array<ulong, 4> catalan_construct_256(ulong n) {
-    auto v = catalan_construct_kbit(n, 256);
-    std::array<ulong, 4> out{};
-    for (size_t i = 0; i < out.size(); ++i)
-        out[i] = (i < v.size() ? v[i] : 0ULL);
-    return out;
-}
-
-std::array<ulong, 8> catalan_construct_512(ulong n) {
-    auto v = catalan_construct_kbit(n, 512);
-    std::array<ulong, 8> out{};
-    for (size_t i = 0; i < out.size(); ++i)
-        out[i] = (i < v.size() ? v[i] : 0ULL);
-    return out;
-}
-
-std::array<ulong, 16> catalan_construct_1024(ulong n) {
-    auto v = catalan_construct_kbit(n, 1'024);
-    std::array<ulong, 16> out{};
-    for (size_t i = 0; i < out.size(); ++i)
-        out[i] = (i < v.size() ? v[i] : 0ULL);
-    return out;
-}
-
-std::array<ulong, 32> catalan_construct_2048(ulong n) {
-    auto v = catalan_construct_kbit(n, 2'048);
-    std::array<ulong, 32> out{};
-    for (size_t i = 0; i < out.size(); ++i)
-        out[i] = (i < v.size() ? v[i] : 0ULL);
     return out;
 }
 
